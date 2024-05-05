@@ -1,0 +1,19 @@
+code_name: 'mdi-ani-tutorial'
+docker:
+  image_name: 'mdi-ani-tutorial'
+
+  build_image:
+    - pip install pymdi
+
+  build_code:
+    - ""
+
+  validate_engine:
+    - echo "Insert code that will confirm that your code has been built successfully"
+    - exit 1
+
+engine_tests:
+  # Provide at least one example input that can be used to test your code's MDI functionality
+  script:
+    - echo "Insert commands to run an example calculation here"
+    - exit 1
