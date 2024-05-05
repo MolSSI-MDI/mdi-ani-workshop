@@ -105,3 +105,9 @@ venv.bak/
 # Emacs
 *~
 #*
+
+outfiles/
+
+.mdimechanic
+
+.temp

@@ -4,6 +4,11 @@ docker:
 
   build_image:
     - pip install pymdi
+    - pip install numpy
+    - pip install torch --index-url https://download.pytorch.org/whl/cpu
+    - pip install torchani
+    - pip install matplotlib
+    - pip cache purge
 
   build_code:
     - ""
@@ -17,3 +22,17 @@ engine_tests:
   script:
     - echo "Insert commands to run an example calculation here"
     - exit 1
+
+run_scripts:
+  ani-tutorial:
+    containers:
+      ani-tutorial:
+        image: 'mdi-ani-tutorial:dev'
+        script:
+          - python mdi-ani-tutorial/mdi-ani-tutorial.py -mdi "-role DRIVER -name driver -method TCP -port 8021"
+      lammps:
+        image: 'lammps-mdi:tutorial'
+        script:
+          - umask 0000
+          - cd lammps/water
+          - lmp -mdi "-role ENGINE -name MD -method TCP -port 8021 -hostname ani-tutorial" -l outfiles/log.lammps -in lammps.in > outfiles/water_tutorial.out
