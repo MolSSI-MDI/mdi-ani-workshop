@@ -1,4 +1,5 @@
 {
+  "name": "SETCA 2024 MolSSI Tutorial: MDI",
   "build": { "dockerfile": "Dockerfile" },
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
