@@ -8,6 +8,8 @@ import mdi
 import numpy as np
 import torch, torchani
 
+from typing import Union
+
 device = torch.device("cpu")
 model = torchani.models.ANI2x(periodic_table_index=True).to(device)
 
@@ -70,10 +72,28 @@ def mass_to_atomic_number(masses):
 
     return atomic_numbers
 
-def calculate_ANI_force(elements, coordinates, cell):
-    """Calculate the ANI force on the atoms."""
+def calculate_ANI_force(masses: Union[np.ndarray, list[float]], coordinates: np.ndarray, cell: np.ndarray):
+    """
+    Calculate the ANI2x force for system of atoms.
+
+    Parameters
+    ----------
+    masses :
+        An array or list containing the masses of the atoms.
+    coordinates :
+        An array containing the 3D coordinates of the atoms.
+    cell : 
+        A 3x3 array representing the periodic boundary conditions of the simulation cell.
+
+    Returns
+    -------
+    np.ndarray
+        A flattened array of forces acting on each atom, reshaped to be 1-dimensional.
+    """
 
     coords_reshape = coordinates.reshape(1, -1, 3)
+
+    elements = mass_to_atomic_number(masses)
 
     torch_coords = torch.tensor(coords_reshape, requires_grad=True, device=device).float()
     elements_torch = torch.tensor(elements, device=device)
@@ -91,4 +111,3 @@ def calculate_ANI_force(elements, coordinates, cell):
     forces_np = forces_np.reshape(-1)
 
     return forces_np
-
