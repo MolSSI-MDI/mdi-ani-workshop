@@ -31,7 +31,7 @@ run_scripts:
         script:
           - python mdi-ani-tutorial/mdi-ani-tutorial.py -mdi "-role DRIVER -name driver -method TCP -port 8021"
       lammps:
-        image: 'lammps-mdi:tutorial'
+        image: 'janash/mdi-lammps:tutorial'
         script:
           - umask 0000
           - cd lammps/water

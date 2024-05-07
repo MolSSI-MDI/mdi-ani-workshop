@@ -48,3 +48,18 @@ def connect_to_engines(nengines):
         engines[engine_name] = comm
 
     return engines
+
+def mass_to_atomic_number(masses):
+    conversion_dict =  {
+    1.008: 1,     # Hydrogen
+    12.011: 6,    # Carbon
+    14.007: 7,    # Nitrogen
+    15.999: 8,    # Oxygen
+    18.998: 9,    # Fluorine
+    35.453: 17,   # Chlorine
+    32.065: 16    # Sulfur
+}
+
+    atomic_numbers = [ [ conversion_dict[mass] for mass in masses ] ]
+
+    return atomic_numbers
