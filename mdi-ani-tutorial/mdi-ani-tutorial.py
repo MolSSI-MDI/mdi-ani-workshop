@@ -15,7 +15,7 @@ except ImportError:
     mpi_comm_world = None
 
 # Import parser
-from util import create_parser, connect_to_engines, mass_to_atomic_number
+from util import create_parser, connect_to_engines, mass_to_atomic_number, calculate_ANI_force
 
 if __name__ == "__main__":
 

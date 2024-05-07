@@ -5,6 +5,12 @@ Utility functions for the mdi-ani-tutorial driver.
 import argparse
 import mdi
 
+import numpy as np
+import torch, torchani
+
+device = torch.device("cpu")
+model = torchani.models.ANI2x(periodic_table_index=True).to(device)
+
 
 def create_parser():
     """Create the parser for the mdi-ani-tutorial driver"""
@@ -63,3 +69,26 @@ def mass_to_atomic_number(masses):
     atomic_numbers = [ [ conversion_dict[mass] for mass in masses ] ]
 
     return atomic_numbers
+
+def calculate_ANI_force(elements, coordinates, cell):
+    """Calculate the ANI force on the atoms."""
+
+    coords_reshape = coordinates.reshape(1, -1, 3)
+
+    torch_coords = torch.tensor(coords_reshape, requires_grad=True, device=device).float()
+    elements_torch = torch.tensor(elements, device=device)
+    pbc = torch.tensor([True, True, True], device=device)
+    cell = torch.tensor(cell.reshape(3, 3), device=device).float()
+
+    # Calculate the energy and forces   
+    energy = model((elements_torch, torch_coords), cell=cell, pbc=pbc).energies
+    derivative = torch.autograd.grad(energy, torch_coords)[0]
+    forces = -derivative.squeeze()
+
+    forces_np = forces.cpu().detach().numpy()
+
+    # reshape to be 1-dimensional like MDI wants
+    forces_np = forces_np.reshape(-1)
+
+    return forces_np
+
