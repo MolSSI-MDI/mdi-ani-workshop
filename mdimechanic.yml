@@ -35,4 +35,4 @@ run_scripts:
         script:
           - umask 0000
           - cd lammps/water
-          - lmp -mdi "-role ENGINE -name MD -method TCP -port 8021 -hostname ani-tutorial" -l outfiles/log.lammps -in lammps.in > outfiles/water_tutorial.out
+          - lmp -mdi "-role ENGINE -name LAMMPS -method TCP -port 8021 -hostname ani-tutorial" -l outfiles/log.lammps -in lammps.in > outfiles/water_tutorial.out
