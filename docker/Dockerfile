@@ -2,7 +2,7 @@
 # Docker file for an MDI engine
 #------------------------------------------------------------#
 
-FROM janash/mdi-base
+FROM mdi/base
 
 # copy the build script
 COPY .temp/build_image.sh .
