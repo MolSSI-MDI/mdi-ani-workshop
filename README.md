@@ -1,5 +1,5 @@
 # MDI TorchANI Tutorial
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/janash/mdi-ani-workshop)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MolSSI-MDI/mdi-ani-workshop)
 
 You can complete this tutorial by [following the directions here](https://molssi-mdi.github.io/ani-driver-tutorial/driver_tutorial.html).
 For easiest completion, open the starting repository using the Codespaces link above.
