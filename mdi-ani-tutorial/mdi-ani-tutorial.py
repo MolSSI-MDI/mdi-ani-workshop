@@ -4,6 +4,9 @@ import warnings
 # Import the MDI Library
 import mdi
 
+# Import Numpy
+import numpy as np
+
 # Import MPI Library
 try:
     from mpi4py import MPI
