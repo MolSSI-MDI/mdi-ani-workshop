@@ -3,12 +3,17 @@ docker:
   image_name: 'mdi-ani-tutorial'
 
   build_image:
-    - pip install pymdi
-    - pip install numpy
-    - pip install torch --index-url https://download.pytorch.org/whl/cpu
-    - pip install torchani
-    - pip install matplotlib
-    - pip cache purge
+    - apt-get update && apt-get install -y curl
+    - curl "http://vergil.chemistry.gatech.edu/psicode-download/Psi4conda-1.9.1-py311-Linux-x86_64.sh" -o Psi4conda-1.9.1-py311-Linux-x86_64.sh --keepalive-time 2
+    - bash Psi4conda-1.9.1-py311-Linux-x86_64.sh -b -p $HOME/psi4conda
+    - echo $'. $HOME/psi4conda/etc/profile.d/conda.sh\nconda activate' >> ~/.bashrc
+    - source ~/.bashrc
+    - /root/psi4conda/bin/pip install pymdi
+    - /root/psi4conda/bin/pip install numpy
+    - /root/psi4conda/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
+    - /root/psi4conda/bin/pip install torchani
+    - /root/psi4conda/bin/pip install matplotlib
+    - /root/psi4conda/bin/pip cache purge
 
   build_code:
     - ""
