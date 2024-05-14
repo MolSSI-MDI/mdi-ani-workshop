@@ -34,6 +34,7 @@ run_scripts:
       ani-tutorial:
         image: 'mdi-ani-tutorial:dev'
         script:
+          - export PATH="/root/psi4conda/bin":$PATH
           - python mdi-ani-tutorial/mdi-ani-tutorial.py -mdi "-role DRIVER -name driver -method TCP -port 8021"
       lammps:
         image: 'janash/mdi-lammps:tutorial'
