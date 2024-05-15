@@ -111,3 +111,5 @@ outfiles/
 .mdimechanic
 
 .temp
+
+*.dat
